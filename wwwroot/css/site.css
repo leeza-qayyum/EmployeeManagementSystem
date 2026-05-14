@@ -1,0 +1,480 @@
+﻿/* ========================================
+   THEME: Deep Indigo & Slate Gray
+   Primary: #2C3E8F (Deep Indigo)
+   Primary Muted: #3A7B8C (Muted Teal)
+   Sidebar text: #4A5568 (Slate Gray)
+   ======================================== */
+/* Global Times New Roman Font */
+body,
+h1, h2, h3, h4, h5, h6,
+p, span, div, label, input, select, textarea,
+button, a, .btn, .card, .table, .form-control {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+:root {
+    --indigo: #2C3E8F;
+    --indigo-light: #EBEFFA;
+    --indigo-dark: #1E2A6B;
+    --teal: #3A7B8C;
+    --teal-dark: #2E5F6E;
+    --slate: #4A5568;
+    --slate-light: #718096;
+    --gray-border: #E2E8F0;
+    --green-active: #2E7D32;
+    --amber-leave: #F5A623;
+    --red-terminated: #C0392B;
+    --white: #FFFFFF;
+    --light-bg: #F7F9FC;
+}
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+    background-color: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* ========================================
+   SIDEBAR LAYOUT (Two-column layout)
+   ======================================== */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background-color: var(--white);
+    border-right: 1px solid var(--gray-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-border);
+    margin-bottom: 1rem;
+}
+
+    .sidebar-header h3 {
+        color: var(--indigo);
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.3rem;
+    }
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .sidebar-nav li {
+        margin: 0.25rem 0;
+    }
+
+    .sidebar-nav a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        color: var(--slate);
+        text-decoration: none;
+        transition: all 0.2s;
+        gap: 12px;
+        font-weight: 500;
+    }
+
+        .sidebar-nav a i {
+            width: 24px;
+            font-size: 1.2rem;
+            color: var(--slate-light);
+        }
+
+        .sidebar-nav a:hover {
+            background-color: var(--indigo-light);
+            color: var(--indigo);
+        }
+
+            .sidebar-nav a:hover i {
+                color: var(--indigo);
+            }
+
+        .sidebar-nav .active a,
+        .sidebar-nav a.active {
+            background-color: var(--indigo-light);
+            color: var(--indigo);
+            border-right: 3px solid var(--indigo);
+        }
+
+            .sidebar-nav .active a i,
+            .sidebar-nav a.active i {
+                color: var(--indigo);
+            }
+
+/* Main content area */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 1.5rem 2rem;
+}
+
+/* Dashboard header */
+.dashboard-header {
+    background-color: var(--white);
+    padding: 1.5rem 2rem;
+    margin: -1.5rem -2rem 1.5rem -2rem;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+    .dashboard-header h1,
+    .dashboard-header h2 {
+        color: var(--indigo);
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .dashboard-header .welcome-text {
+        color: var(--slate);
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
+
+/* ========================================
+   CARDS & BUTTONS
+   ======================================== */
+/* Dashboard action cards */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.dashboard-card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+    color: var(--slate);
+}
+
+    .dashboard-card i {
+        font-size: 2.5rem;
+        color: var(--teal);
+        margin-bottom: 0.75rem;
+    }
+
+    .dashboard-card h5 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+        color: var(--indigo);
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        border-color: var(--teal);
+    }
+
+/* Primary CTA buttons (Muted Teal) */
+.btn-primary, .btn-teal {
+    background-color: var(--teal);
+    border-color: var(--teal);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+    .btn-primary:hover, .btn-teal:hover {
+        background-color: var(--teal-dark);
+        border-color: var(--teal-dark);
+        transform: translateY(-1px);
+    }
+
+/* Secondary buttons */
+.btn-secondary {
+    background-color: var(--white);
+    border: 1px solid var(--gray-border);
+    color: var(--slate);
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+}
+
+    .btn-secondary:hover {
+        background-color: var(--indigo-light);
+        border-color: var(--indigo);
+        color: var(--indigo);
+    }
+
+/* Danger button (Logout) */
+.btn-danger {
+    background-color: var(--red-terminated);
+    border-color: var(--red-terminated);
+}
+
+    .btn-danger:hover {
+        background-color: #a93226;
+        border-color: #a93226;
+    }
+
+/* Action buttons (long rectangular) */
+.action-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: var(--slate);
+    transition: all 0.2s;
+}
+
+    .action-button i {
+        font-size: 1.3rem;
+        color: var(--teal);
+    }
+
+    .action-button span {
+        font-weight: 500;
+    }
+
+    .action-button:hover {
+        background-color: var(--indigo-light);
+        border-color: var(--indigo);
+        transform: translateX(5px);
+    }
+
+        .action-button:hover i {
+            color: var(--indigo);
+        }
+
+/* ========================================
+   TABLE STYLING
+   ======================================== */
+.table {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    .table thead th {
+        background-color: var(--indigo-light);
+        color: var(--indigo);
+        font-weight: 600;
+        padding: 1rem;
+        border-bottom: 2px solid var(--indigo);
+    }
+
+    .table tbody tr:hover {
+        background-color: var(--indigo-light);
+    }
+
+    .table td, .table th {
+        padding: 0.75rem 1rem;
+        vertical-align: middle;
+        border-bottom: 1px solid var(--gray-border);
+    }
+
+/* ========================================
+   STATUS BADGES
+   ======================================== */
+.badge-active {
+    background-color: var(--green-active);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.badge-onleave {
+    background-color: var(--amber-leave);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.badge-terminated {
+    background-color: var(--red-terminated);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.badge-pending {
+    background-color: #E2E8F0;
+    color: #4A5568;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.badge-warning {
+    background-color: #F5A623;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ========================================
+   FORM STYLES
+   ======================================== */
+.form-control, .form-select {
+    border: 1px solid var(--gray-border);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(58, 123, 140, 0.1);
+        outline: none;
+    }
+
+.form-label {
+    font-weight: 500;
+    color: var(--slate);
+    margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   CARDS (white info boxes)
+   ======================================== */
+.card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Profile picture */
+.profile-picture {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--indigo);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.default-profile-icon {
+    font-size: 180px;
+    color: var(--slate-light);
+}
+
+/* Login page */
+.login-container {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.login-heading {
+    color: var(--indigo);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .dashboard-header {
+        margin: -1rem -1rem 1.5rem -1rem;
+        padding: 1rem;
+    }
+}
+
+/* Logout button special */
+.logout-button {
+    border-color: var(--red-terminated);
+    color: var(--red-terminated);
+}
+
+    .logout-button:hover {
+        background-color: var(--red-terminated);
+        border-color: var(--red-terminated);
+        color: white;
+    }
+
+    .logout-button i {
+        color: var(--red-terminated);
+    }
+
+    .logout-button:hover i {
+        color: white;
+    }
+
+/* Department/Employee selection buttons */
+.dept-btn, .emp-btn {
+    background-color: white;
+    border: 1px solid var(--gray-border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+}
+
+    .dept-btn:hover, .emp-btn:hover {
+        background-color: var(--indigo-light);
+        border-color: var(--indigo);
+        transform: translateY(-2px);
+    }
+
+    .dept-btn i, .emp-btn i {
+        margin-right: 8px;
+        font-size: 1.2rem;
+        color: var(--teal);
+    }

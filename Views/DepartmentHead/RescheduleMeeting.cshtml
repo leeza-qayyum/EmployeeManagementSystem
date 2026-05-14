@@ -1,0 +1,51 @@
+﻿@model EmployeeManagementSystem.Models.Meeting
+@{
+    ViewData["Title"] = "Reschedule Meeting";
+}
+
+<h2>Reschedule Meeting: @Model.Title</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Original Date/Time:</strong> @Model.MeetingDate.ToShortDateString() at @Model.StartTime - @Model.EndTime
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label>New Date</label>
+                                <input name="newDate" type="date" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label>New Start Time</label>
+                                <input name="newStartTime" type="time" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label>New End Time</label>
+                                <input name="newEndTime" type="time" class="form-control" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Reason for Rescheduling</label>
+                        <textarea name="reason" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning">Confirm Reschedule</button>
+                    <a asp-action="Meetings" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

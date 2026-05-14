@@ -1,0 +1,27 @@
+﻿@model List<EmployeeManagementSystem.Models.Employee>
+@{
+    ViewData["Title"] = "Appoint Department Head";
+}
+<h2>Appoint Department Head</h2>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+<form method="post">
+    <div class="mb-3">
+        <label>Select Employee</label>
+        <select name="employeeId" class="form-select" required>
+            <option value="">-- Choose Employee --</option>
+            @foreach (var emp in Model)
+            {
+                <option value="@emp.Id">@emp.Name (ID: @emp.Id, Dept: @emp.Department)</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Appoint as Head</button>
+    <a asp-action="Dashboard" class="btn btn-secondary">Back</a>
+</form>

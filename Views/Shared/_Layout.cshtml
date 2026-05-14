@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EMS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>EMS Portal</h3>
+            </div>
+            @if (Context.Session.GetString("Username") != null)
+            {
+                var role = Context.Session.GetString("Role");
+                <ul class="sidebar-nav">
+                    @if (role == "HRManager")
+                    {
+                        <li><a asp-controller="HR" asp-action="Dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                        <li><a asp-controller="HR" asp-action="ViewProfile"><i class="bi bi-person-circle"></i> My Profile</a></li>
+                        <li><a asp-controller="HR" asp-action="ManageEmployees"><i class="bi bi-people"></i> Manage Employees</a></li>
+                        <li><a asp-controller="HR" asp-action="AppointHead"><i class="bi bi-person-badge"></i> Appoint Head</a></li>
+
+                        <!-- RECRUITMENT - Only ONE menu item -->
+                        <li><a asp-controller="HR" asp-action="ManageJobPostings"><i class="bi bi-briefcase"></i> Manage Jobs</a></li>
+
+                        <li><a asp-controller="Account" asp-action="ChangePassword"><i class="bi bi-key"></i> Change Password</a></li>
+                        <li><a asp-controller="Account" asp-action="Logout" class="logout-button"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                    }
+                    else if (role == "Employee")
+                    {
+                        <li><a asp-controller="Employee" asp-action="Dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                        <li><a asp-controller="Employee" asp-action="ViewProfile"><i class="bi bi-person-circle"></i> My Profile</a></li>
+                        <li><a asp-controller="Employee" asp-action="ApplyLeave"><i class="bi bi-calendar-plus"></i> Apply Leave</a></li>
+                        <li><a asp-controller="Employee" asp-action="LeaveHistory"><i class="bi bi-clock-history"></i> Leave History</a></li>
+                        <li><a asp-controller="Employee" asp-action="MonthlyAttendance"><i class="bi bi-calendar-month"></i> Monthly Attendance</a></li>
+                        <li><a asp-controller="Employee" asp-action="Meetings"><i class="bi bi-calendar-check"></i> Department Meetings</a></li>
+                        <li><a asp-controller="Account" asp-action="ChangePassword"><i class="bi bi-key"></i> Change Password</a></li>
+                        <li><a asp-controller="Account" asp-action="Logout" class="logout-button"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                    }
+                    else if (role == "DepartmentHead")
+                    {
+                        <li><a asp-controller="DepartmentHead" asp-action="Dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                        <li><a asp-controller="DepartmentHead" asp-action="ViewProfile"><i class="bi bi-person-circle"></i> My Profile</a></li>
+                        <li><a asp-controller="DepartmentHead" asp-action="ViewEmployees"><i class="bi bi-people"></i> My Employees</a></li>
+                        <li><a asp-controller="DepartmentHead" asp-action="ManageLeaves"><i class="bi bi-envelope-paper"></i> Manage Leaves</a></li>
+                        <li><a asp-controller="DepartmentHead" asp-action="MonthlyAttendance"><i class="bi bi-calendar-month"></i> Monthly Attendance</a></li>
+                        <li><a asp-controller="DepartmentHead" asp-action="Meetings"><i class="bi bi-calendar-event"></i> Manage Meetings</a></li>
+                        <li><a asp-controller="Account" asp-action="ChangePassword"><i class="bi bi-key"></i> Change Password</a></li>
+                        <li><a asp-controller="Account" asp-action="Logout" class="logout-button"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                       
+                    }
+                </ul>
+            }
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            @if (Context.Session.GetString("Username") != null)
+            {
+                <div class="dashboard-header">
+                    <h1>@ViewData["Title"]</h1>
+                    <p class="welcome-text">Welcome, @Context.Session.GetString("Username")</p>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

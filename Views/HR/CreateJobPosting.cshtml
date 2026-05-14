@@ -1,0 +1,40 @@
+﻿@model EmployeeManagementSystem.Models.JobPosting
+@{
+    ViewData["Title"] = "Create Job Posting";
+}
+<h2>Create New Job Posting</h2>
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Job Title</label>
+                        <input asp-for="Title" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Department</label>
+                        <input asp-for="Department" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Required Skills (comma-separated)</label>
+                        <textarea asp-for="RequiredSkills" class="form-control" rows="3"
+                                  placeholder="e.g., C#, ASP.NET, SQL, JavaScript"></textarea>
+                        <small class="text-muted">Skills will be matched against CVs</small>
+                    </div>
+                    <div class="mb-3">
+                        <label>Job Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>Application Deadline (optional)</label>
+                        <input asp-for="ApplicationDeadline" type="date" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-teal">Create Job Posting</button>
+                    <a asp-action="Dashboard" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

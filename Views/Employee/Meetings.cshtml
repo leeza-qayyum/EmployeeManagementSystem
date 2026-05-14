@@ -1,0 +1,79 @@
+﻿@model List<EmployeeManagementSystem.Models.Meeting>
+@using EmployeeManagementSystem.Models
+@{
+    ViewData["Title"] = "Department Meetings";
+}
+
+<h2>Department Meetings</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<!-- Upcoming Meetings Section -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5>Upcoming Meetings</h5>
+
+        @{
+            var upcomingMeetings = Model.Where(m => (m.MeetingDate >= DateTime.Now.Date && m.Status == MeetingStatus.Scheduled) || m.Status == MeetingStatus.Rescheduled).OrderBy(m => m.MeetingDate).ToList();
+        }
+
+        @if (upcomingMeetings.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Meeting Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var meeting in upcomingMeetings)
+                        {
+                            <tr>
+                                <td>@meeting.Title</td>
+                                <td>@meeting.MeetingDate.ToShortDateString()</td>
+                                <td>@meeting.StartTime - @meeting.EndTime</td>
+                                <td>@meeting.Location</td>
+                                <td>
+                                    @if (meeting.Status == MeetingStatus.Rescheduled)
+                                    {
+                                        <span class="badge-warning">Rescheduled</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-active">Scheduled</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(meeting.MeetingLink))
+                                    {
+                                        <a href="@meeting.MeetingLink" target="_blank" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-camera-video"></i> Join Meeting
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">In-person</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No upcoming meetings scheduled.</p>
+        }
+    </div>
+</div>
+

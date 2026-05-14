@@ -1,0 +1,65 @@
+﻿@model List<EmployeeManagementSystem.Models.Attendance>
+@using EmployeeManagementSystem.Models
+@{
+    ViewData["Title"] = "Late Attendance";
+    var date = ViewBag.Date as DateTime? ?? DateTime.Now;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Late Employees</h2>
+    <div>
+        <form method="get" class="d-flex gap-2">
+            <input type="date" name="date" value="@date.ToString("yyyy-MM-dd")" class="form-control" style="width: auto;" />
+            <button type="submit" class="btn btn-primary">View Date</button>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5>Late Arrivals for @date.ToString("dd/MM/yyyy")</h5>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Department</th>
+                            <th>Check-In Time</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var employees = ViewBag.Employees as List<Employee>;
+                        }
+                        @foreach (var attendance in Model)
+                        {
+                            var employee = employees?.FirstOrDefault(e => e.Id == attendance.EmployeeId);
+                            <tr style="text-align: center;">
+                                <td style="vertical-align: middle;">@(employee?.Name ?? "Unknown")</td>
+                                <td style="vertical-align: middle;">@(employee?.Department ?? "N/A")</td>
+                                <td style="vertical-align: middle;">@(attendance.CheckInTime?.ToString("hh:mm tt") ?? "-")</td>
+                                <td style="vertical-align: middle;"><span class="badge-warning">Late</span></td>
+                                <td style="vertical-align: middle;">@(string.IsNullOrEmpty(attendance.Remarks) ? "Arrived after 9:30 AM" : attendance.Remarks)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success">
+                <i class="bi bi-check-circle"></i> No late employees on @date.ToString("dd/MM/yyyy").
+            </div>
+        }
+    </div>
+</div>
+
+<div class="mt-3 text-center">
+    <a asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+</div>

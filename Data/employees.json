@@ -1,0 +1,72 @@
+[
+  {
+    "ProfilePicturePath": "/uploads/hr_639140334605097065_churail.jpg",
+    "Id": 0,
+    "Name": "Leeza Qayyum",
+    "Email": "leeza@gmail.com",
+    "Department": "HR Manager",
+    "Phone": "03027947500",
+    "Salary": 8000,
+    "LeaveBalance": 20
+  },
+  {
+    "ProfilePicturePath": "/uploads/emp_1_639139512753959110_WhatsApp Image 2026-04-03 at 4.22.03 PM.jpeg",
+    "Id": 1,
+    "Name": "Abdul Qayyum",
+    "Email": "qayyumsabirbop1970@gmail.com",
+    "Department": "Accounting",
+    "Phone": "03063314916",
+    "Salary": 600000,
+    "LeaveBalance": 20
+  },
+  {
+    "ProfilePicturePath": "/uploads/depthead_2_639139516420337676_WhatsApp Image 2026-04-24 at 3.06.33 PM.jpeg",
+    "Id": 2,
+    "Name": "Amna Qayyum",
+    "Email": "amnaqayyum307@gmail.com",
+    "Department": "Accounting",
+    "Phone": "12345678912",
+    "Salary": 50000.00,
+    "LeaveBalance": 20
+  },
+  {
+    "ProfilePicturePath": "/uploads/emp_3_white_swan_on_body_of_water_floating_dark_theme_black_background_4k_hd_dark_theme.jpg",
+    "Id": 3,
+    "Name": "Kisfa Javed",
+    "Email": "kisfajaved@gmail.com",
+    "Department": "Finance",
+    "Phone": "03063314916",
+    "Salary": 600000,
+    "LeaveBalance": 20
+  },
+  {
+    "ProfilePicturePath": "/uploads/emp_4_WhatsApp Image 2025-09-19 at 2.10.37 AM.jpeg",
+    "Id": 4,
+    "Name": "Leeza",
+    "Email": "leezaqayum2005@gmail.com",
+    "Department": "Accounting",
+    "Phone": "03027947500",
+    "Salary": 50000.00,
+    "LeaveBalance": 20
+  },
+  {
+    "ProfilePicturePath": null,
+    "Id": 5,
+    "Name": "Sara",
+    "Email": "imanismail055@gmail.com",
+    "Department": "IT",
+    "Phone": "03416745405",
+    "Salary": 100000,
+    "LeaveBalance": 20
+  },
+  {
+    "ProfilePicturePath": null,
+    "Id": 6,
+    "Name": "Iman ",
+    "Email": "imanismail055@gmail.com",
+    "Department": "IT",
+    "Phone": "03281488670",
+    "Salary": 200000,
+    "LeaveBalance": 20
+  }
+]

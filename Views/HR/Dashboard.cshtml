@@ -1,0 +1,114 @@
+﻿@using EmployeeManagementSystem.Models
+@{
+    ViewData["Title"] = "HR Dashboard";
+}
+
+<!-- Statistics Cards Row -->
+<div class="row g-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-people-fill" style="font-size: 2rem; color: #2C3E8F;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.TotalEmployees</h3>
+                <p class="text-muted mb-0">Total Employees</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-building" style="font-size: 2rem; color: #3A7B8C;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.TotalDepartments</h3>
+                <p class="text-muted mb-0">Departments</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-person-badge" style="font-size: 2rem; color: #F5A623;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.TotalHeads</h3>
+                <p class="text-muted mb-0">Dept. Heads</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-briefcase-fill" style="font-size: 2rem; color: #2E7D32;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.ActiveJobs</h3>
+                <p class="text-muted mb-0">Active Jobs</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Job Postings & Applications - Added mt-5 for more spacing -->
+<div class="row g-4 mt-5">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-3">
+                <h5 class="mb-0"><i class="bi bi-file-post me-2"></i>Recent Job Postings</h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentJobs != null && ((List<JobPosting>)ViewBag.RecentJobs).Count > 0)
+                {
+                    var recentJobs = (List<JobPosting>)ViewBag.RecentJobs;
+                    <div class="list-group">
+                        @foreach (var job in recentJobs)
+                        {
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>@job.Title</strong>
+                                    <br />
+                                    <small class="text-muted">@job.Department | Posted: @job.PostedDate.ToShortDateString()</small>
+                                </div>
+                                <a asp-action="ViewApplications" asp-route-jobId="@job.Id" class="btn btn-sm btn-teal">View Apps</a>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted text-center mb-0">No job postings yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-3">
+                <h5 class="mb-0"><i class="bi bi-person-badge me-2"></i>Recent Applications</h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentApplications != null && ((List<JobApplication>)ViewBag.RecentApplications).Count > 0)
+                {
+                    var recentApps = (List<JobApplication>)ViewBag.RecentApplications;
+                    var allJobs = (List<JobPosting>)ViewBag.AllJobs;
+
+                    <div class="list-group">
+                        @foreach (var app in recentApps)
+                        {
+                            var job = allJobs?.FirstOrDefault(j => j.Id == app.JobPostingId);
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@app.CandidateName</strong>
+                                        <br />
+                                        <small>@job?.Title | Score: <span class="badge-active">@app.MatchScore%</span></small>
+                                    </div>
+                                    <span class="badge @(app.Status == "Shortlisted" ? "bg-warning" : "bg-secondary")">@app.Status</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted text-center mb-0">No applications yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

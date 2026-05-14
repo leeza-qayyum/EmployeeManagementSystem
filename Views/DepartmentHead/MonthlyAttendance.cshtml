@@ -1,0 +1,161 @@
+﻿@model List<EmployeeManagementSystem.Models.Attendance>
+@using EmployeeManagementSystem.Models
+@{
+    ViewData["Title"] = "Department Monthly Attendance";
+
+    var months = new List<SelectListItem>();
+    for (int i = 1; i <= 12; i++)
+    {
+        months.Add(new SelectListItem { Value = i.ToString(), Text = new DateTime(2000, i, 1).ToString("MMMM"), Selected = i == ViewBag.Month });
+    }
+
+    var years = new List<SelectListItem>();
+    int currentYear = DateTime.Now.Year;
+    for (int i = currentYear - 2; i <= currentYear + 1; i++)
+    {
+        years.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString(), Selected = i == ViewBag.Year });
+    }
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Department Attendance - @ViewBag.Department</h2>
+    <form method="get" class="d-flex gap-2">
+        <select name="month" class="form-select" style="width: auto;">
+            @foreach (var month in months)
+            {
+                <option value="@month.Value" selected="@month.Selected">@month.Text</option>
+            }
+        </select>
+        <select name="year" class="form-select" style="width: auto;">
+            @foreach (var year in years)
+            {
+                <option value="@year.Value" selected="@year.Selected">@year.Text</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary">View</button>
+    </form>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <i class="bi bi-people-fill" style="font-size: 2rem; color: #2C3E8F;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.TotalEmployees</h3>
+                <p class="text-muted mb-0">Team Members</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <i class="bi bi-calendar-month" style="font-size: 2rem; color: #3A7B8C;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.TotalDays</h3>
+                <p class="text-muted mb-0">Working Days</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <i class="bi bi-check-circle-fill" style="font-size: 2rem; color: #2E7D32;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.AttendedDays</h3>
+                <p class="text-muted mb-0">Total Attendances</p>
+                <small>(Present + Late)</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <i class="bi bi-exclamation-triangle-fill" style="font-size: 2rem; color: #F5A623;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.LateEmployeesCount</h3>
+                <p class="text-muted mb-0">Employees with Late</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Late Employees List -->
+@if (ViewBag.LateEmployeesList != null && ((List<string>)ViewBag.LateEmployeesList).Any())
+{
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="text-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i> Employees with Late Arrivals
+            </h5>
+            <ul>
+                @foreach (var empName in (List<string>)ViewBag.LateEmployeesList)
+                {
+                    <li>@empName</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+<!-- Daily Attendance Table -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5>Daily Attendance for @ViewBag.MonthName</h5>
+
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Employee</th>
+                            <th>Department</th>
+                            <th>Check-In Time</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var employees = ViewBag.Employees as List<Employee>;
+                        }
+                        @foreach (var record in Model.OrderBy(r => r.Date))
+                        {
+                            var employee = employees?.FirstOrDefault(e => e.Id == record.EmployeeId);
+                            <tr>
+                                <td>@record.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@(employee?.Name ?? "Unknown")</td>
+                                <td>@(employee?.Department ?? "N/A")</td>
+                                <td>@(record.CheckInTime?.ToString("hh:mm tt") ?? "-")</td>
+                                <td>
+                                    @if (record.Status == AttendanceStatus.Late)
+                                    {
+                                        <span class="badge-warning">Late</span>
+                                    }
+                                    else if (record.Status == AttendanceStatus.Present)
+                                    {
+                                        <span class="badge-active">Present</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-secondary">Absent</span>
+                                    }
+                                </td>
+                                <td>@(string.IsNullOrEmpty(record.Remarks) ? "-" : record.Remarks)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> No attendance records found for @ViewBag.MonthName.
+            </div>
+        }
+    </div>
+</div>
+
+<div class="mt-3 text-center">
+    <a asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+</div>

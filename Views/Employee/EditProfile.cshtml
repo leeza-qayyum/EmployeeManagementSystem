@@ -1,0 +1,79 @@
+﻿@model EmployeeManagementSystem.Models.Employee
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+<h2>Edit Your Profile</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Full Name</label>
+                        <input asp-for="Name" class="form-control" readonly />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email (must end with @@gmail.com)</label>
+                        <input asp-for="Email" class="form-control" type="email" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Department</label>
+                        <input asp-for="Department" class="form-control" readonly />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Phone (11 digits, no spaces or dashes)</label>
+                        <input asp-for="Phone" class="form-control" required />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Salary</label>
+                        <input asp-for="Salary" class="form-control" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <label>Profile Picture</label>
+                    @if (!string.IsNullOrEmpty(Model.ProfilePicturePath))
+                    {
+                        <div class="mb-2">
+                            <img src="@Model.ProfilePicturePath" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mb-2">
+                            <i class="bi bi-person-circle" style="font-size: 80px;"></i>
+                        </div>
+                    }
+                    <input type="file" name="profileImage" class="form-control mt-2" accept="image/*" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="ViewProfile" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

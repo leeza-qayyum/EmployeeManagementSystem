@@ -1,0 +1,43 @@
+﻿@model List<EmployeeManagementSystem.Models.Employee>
+@{
+    ViewData["Title"] = "Manage Employees";
+}
+<h2 class="dashboard-heading">All Employees</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Department</th><th>Phone</th><th>Salary</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.Id</td>
+                <td>@e.Name</td>
+                <td>@e.Email</td>
+                <td>@e.Department</td>
+                <td>@e.Phone</td>
+                <td>@e.Salary</td>
+                <td>
+                    <a asp-action="EditEmployee" asp-route-id="@e.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="DeleteEmployee" asp-route-id="@e.Id" class="btn btn-sm btn-danger" onclick="return confirm('Delete employee?')">Delete</a>
+                 </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Buttons at bottom, centered, side by side -->
+<div class="d-flex justify-content-center gap-3 mt-4">
+    <a asp-action="AddEmployee" class="btn btn-success">Add Employee</a>
+    <a asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+</div>

@@ -1,0 +1,24 @@
+[
+  {
+    "Id": 1,
+    "Title": "Employee",
+    "Description": "We are seeking a detail-oriented Accountant to manage financial records, prepare reports, and ensure compliance with tax regulations. You will handle day-to-day accounting operations and support month-end closing.",
+    "RequiredSkills": " QuickBooks, Xero, SAP, Oracle NetSuite, Tally, MS Excel",
+    "Department": "Accounting",
+    "PostedDate": "2026-05-09T17:43:39.8326226+05:00",
+    "ApplicationDeadline": "2026-05-10T00:00:00",
+    "IsActive": false,
+    "GoogleFormLink": "https://localhost:7015/Public/Apply?jobId=1"
+  },
+  {
+    "Id": 2,
+    "Title": "Backend Developer",
+    "Description": "Should be good person",
+    "RequiredSkills": "C\u002B\u002B Python Java",
+    "Department": "IT",
+    "PostedDate": "2026-05-10T17:54:23.4218825+05:00",
+    "ApplicationDeadline": "2026-08-15T00:00:00",
+    "IsActive": false,
+    "GoogleFormLink": "https://localhost:7015/Public/Apply?jobId=2"
+  }
+]

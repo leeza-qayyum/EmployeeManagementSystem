@@ -1,0 +1,31 @@
+﻿@model List<EmployeeManagementSystem.Models.Employee>
+@{
+    ViewData["Title"] = "Select Employee";
+    var department = ViewBag.Department;
+}
+<h3 class="text-white">Appoint Head for <strong>@department</strong></h3>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div class="row justify-content-center">
+    @foreach (var emp in Model)
+    {
+        <div class="col-12 col-md-8 col-lg-6 mb-3 emp-col">
+            <form method="post" asp-action="ConfirmAppoint">
+                <input type="hidden" name="employeeId" value="@emp.Id" />
+                <input type="hidden" name="department" value="@department" />
+                <button type="submit" class="emp-btn">
+                    <i class="bi bi-person"></i> @emp.Name (ID: @emp.Id)<br />
+                    <small class="text-muted">@emp.Email</small>
+                </button>
+            </form>
+        </div>
+    }
+</div>
+
+<div class="text-center mt-4">
+    <a asp-action="AppointHead" class="btn btn-secondary">Back to Departments</a>
+</div>

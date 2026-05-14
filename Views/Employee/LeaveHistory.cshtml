@@ -1,0 +1,22 @@
+﻿@model List<EmployeeManagementSystem.Models.LeaveRequest>
+@{
+    ViewData["Title"] = "Leave History";
+}
+
+<table class="table">
+    <thead>
+        <tr><th>Dates</th><th>Reason</th><th>Status</th><th>Applied On</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var leave in Model)
+        {
+            <tr>
+                <td>@leave.StartDate.ToShortDateString() - @leave.EndDate.ToShortDateString()</td>
+                <td>@leave.Reason</td>
+                <td>@leave.Status</td>
+                <td>@leave.AppliedDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Dashboard" class="btn btn-secondary">Back</a>

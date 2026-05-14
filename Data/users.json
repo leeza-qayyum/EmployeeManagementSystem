@@ -1,0 +1,44 @@
+[
+  {
+    "Username": "admin",
+    "Password": "dnaqr7AnyCW9mrq3iyNAcOcCdS9iW3UuVeVbSOYH41g=",
+    "UserRole": 0,
+    "EmployeeId": 0
+  },
+  {
+    "Username": "qayyumsabirbop1970",
+    "Password": "N3j8upMy36eJ1yFjXhYNEU\u002BD8LNEmWYG\u002BR1l9Hv8xpc=",
+    "UserRole": 1,
+    "EmployeeId": 1
+  },
+  {
+    "Username": "amnaqayyum307",
+    "Password": "jQQEYyVqWomgiDEMwkD4cz2VFn22HhQ8eCJPPjCbuQQ=",
+    "UserRole": 2,
+    "EmployeeId": 2
+  },
+  {
+    "Username": "kisfajaved",
+    "Password": "FweSTP7\u002Bq2Jy1KBXEHZdNiTtqzZ1FfCzKis1noUpwp4=",
+    "UserRole": 1,
+    "EmployeeId": 3
+  },
+  {
+    "Username": "leezaqayum2005",
+    "Password": "Y6Qd8LjreNwQZacOT7SvHcnTwNUpkEKTCLs7ekfL47E=",
+    "UserRole": 1,
+    "EmployeeId": 4
+  },
+  {
+    "Username": "imanismail055",
+    "Password": "nPMoL5sNawofd2MzKrhdNHzg8fnHRKc3/JYM5MA/3y8=",
+    "UserRole": 2,
+    "EmployeeId": 5
+  },
+  {
+    "Username": "imanismail0556",
+    "Password": "6lbMju/YzfWew9tjdPM0CB8pmRXCZpI9vmJoKPQfba0=",
+    "UserRole": 1,
+    "EmployeeId": 6
+  }
+]

@@ -1,0 +1,120 @@
+﻿@model List<EmployeeManagementSystem.Models.Meeting>
+@using EmployeeManagementSystem.Models
+@{
+    ViewData["Title"] = "Manage Meetings";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Department Meetings</h2>
+    <a asp-action="ScheduleMeeting" class="btn btn-teal">
+        <i class="bi bi-plus-circle"></i> Schedule Meeting
+    </a>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<!-- Active Meetings Section (Scheduled & Rescheduled) -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5>Active Meetings</h5>
+
+        @if (Model.Any(m => m.Status == MeetingStatus.Scheduled || m.Status == MeetingStatus.Rescheduled))
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var meeting in Model.Where(m => m.Status == MeetingStatus.Scheduled || m.Status == MeetingStatus.Rescheduled).OrderBy(m => m.MeetingDate))
+                        {
+                            <tr>
+                                <td>@meeting.Title</td>
+                                <td>@meeting.MeetingDate.ToShortDateString()</td>
+                                <td>@meeting.StartTime - @meeting.EndTime</td>
+                                <td>@meeting.Location</td>
+                                <td>
+                                    @if (meeting.Status == MeetingStatus.Rescheduled)
+                                    {
+                                        <span class="badge-warning">Rescheduled</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-active">Scheduled</span>
+                                    }
+                                </td>
+                                <td class="text-nowrap">
+                                    <div class="d-flex gap-1">
+                                    <form method="post" asp-action="MarkMeetingDone" style="display:inline">
+                                        <input type="hidden" name="id" value="@meeting.Id" />
+                                        <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark this meeting as completed?')">
+                                            <i class="bi bi-check-circle"></i> Done
+                                        </button>
+                                    </form>
+                                    <a asp-action="RescheduleMeeting" asp-route-id="@meeting.Id" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-calendar-event"></i> Reschedule
+                                    </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No active meetings.</p>
+        }
+    </div>
+</div>
+
+<!-- Completed Meetings Section -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5>Completed Meetings</h5>
+
+        @if (Model.Any(m => m.Status == MeetingStatus.Completed))
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var meeting in Model.Where(m => m.Status == MeetingStatus.Completed).OrderByDescending(m => m.MeetingDate))
+                        {
+                            <tr>
+                                <td>@meeting.Title</td>
+                                <td>@meeting.MeetingDate.ToShortDateString()</td>
+                                <td>@meeting.StartTime - @meeting.EndTime</td>
+                                <td>@meeting.Location</td>
+                                <td><span class="badge-active">Completed</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No completed meetings.</p>
+        }
+    </div>
+</div>

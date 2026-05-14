@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Department Head Dashboard";
+}
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-building" style="font-size: 2rem; color: #2C3E8F;"></i>
+                <h5 class="mt-2 mb-0">@ViewBag.Department</h5>
+                <p class="text-muted mb-0">Your Department</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-people-fill" style="font-size: 2rem; color: #3A7B8C;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.TeamCount</h3>
+                <p class="text-muted mb-0">Team Members</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-envelope-paper-fill" style="font-size: 2rem; color: #F5A623;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.PendingRequests</h3>
+                <p class="text-muted mb-0">Pending Approvals</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pending Leave Requests Table -->
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 pt-3">
+        <h5 class="mb-0"><i class="bi bi-hourglass-split me-2"></i>Pending Leave Requests</h5>
+    </div>
+    <div class="card-body">
+        @if (ViewBag.PendingLeavesList != null && ViewBag.PendingLeavesList.Count > 0)
+        {
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Date Range</th>
+                        <th>Reason</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var leave in ViewBag.PendingLeavesList)
+                    {
+                        var emp = ((List<Employee>)ViewBag.Employees).FirstOrDefault(e => e.Id == leave.EmployeeId);
+                        <tr>
+                            <td>@emp?.Name</td>
+                            <td>@leave.StartDate.ToShortDateString() - @leave.EndDate.ToShortDateString()</td>
+                            <td>@leave.Reason</td>
+                            <td>
+                                <form method="post" asp-action="ApproveLeave" style="display:inline">
+                                    <input type="hidden" name="leaveId" value="@leave.Id" />
+                                    <button type="submit" class="btn btn-sm btn-teal">Approve</button>
+                                </form>
+                                <form method="post" asp-action="RejectLeave" style="display:inline">
+                                    <input type="hidden" name="leaveId" value="@leave.Id" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted text-center mb-0">No pending leave requests.</p>
+        }
+    </div>
+</div>

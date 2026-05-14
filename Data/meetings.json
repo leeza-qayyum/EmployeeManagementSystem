@@ -1,0 +1,17 @@
+[
+  {
+    "Id": 1,
+    "DepartmentHeadId": 2,
+    "Title": "Project Discussion",
+    "Description": "Everyone should be present  we will discuss project report and all minor aspects",
+    "MeetingDate": "2026-05-16T00:00:00",
+    "StartTime": "18:11:00",
+    "EndTime": "18:23:00",
+    "Location": "Khadeeja hall, Room 11",
+    "MeetingLink": null,
+    "Status": 2,
+    "CreatedDate": "2026-05-10T18:07:20.4565558+05:00",
+    "RescheduledFrom": "2026-05-10T00:00:00",
+    "RescheduleReason": "I am busy I am busy in food"
+  }
+]

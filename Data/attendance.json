@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "EmployeeId": 1,
+    "Date": "2026-05-10T00:00:00+05:00",
+    "CheckInTime": "2026-05-10T17:15:39.3222404+05:00",
+    "CheckOutTime": null,
+    "Status": 1,
+    "Remarks": "Arrived after 9:30 AM",
+    "WorkingHours": 0,
+    "IsHoliday": false
+  },
+  {
+    "Id": 2,
+    "EmployeeId": 2,
+    "Date": "2026-05-10T00:00:00+05:00",
+    "CheckInTime": "2026-05-10T17:16:15.3420969+05:00",
+    "CheckOutTime": null,
+    "Status": 0,
+    "Remarks": "",
+    "WorkingHours": 0,
+    "IsHoliday": false
+  },
+  {
+    "Id": 3,
+    "EmployeeId": 4,
+    "Date": "2026-05-10T00:00:00+05:00",
+    "CheckInTime": "2026-05-10T17:23:04.6566072+05:00",
+    "CheckOutTime": null,
+    "Status": 1,
+    "Remarks": "Arrived after 9:30 AM",
+    "WorkingHours": 0,
+    "IsHoliday": false
+  },
+  {
+    "Id": 4,
+    "EmployeeId": 6,
+    "Date": "2026-05-10T00:00:00+05:00",
+    "CheckInTime": "2026-05-10T17:59:15.9738574+05:00",
+    "CheckOutTime": null,
+    "Status": 1,
+    "Remarks": "Arrived after 9:30 AM",
+    "WorkingHours": 0,
+    "IsHoliday": false
+  },
+  {
+    "Id": 5,
+    "EmployeeId": 2,
+    "Date": "2026-05-12T00:00:00+05:00",
+    "CheckInTime": "2026-05-12T10:38:03.4492538+05:00",
+    "CheckOutTime": null,
+    "Status": 0,
+    "Remarks": "",
+    "WorkingHours": 0,
+    "IsHoliday": false
+  }
+]

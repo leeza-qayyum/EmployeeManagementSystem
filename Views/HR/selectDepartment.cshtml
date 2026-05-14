@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Select Department";
+}
+<h3 class="text-white">Appoint Department Head – Select Department</h3>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div class="row justify-content-center">
+    @foreach (var dept in ViewBag.Departments)
+    {
+        <div class="col-12 col-md-8 col-lg-6 mb-3 dept-col">
+            <form method="post" asp-action="AppointHead">
+                <input type="hidden" name="department" value="@dept" />
+                <button type="submit" class="dept-btn">
+                    <i class="bi bi-building"></i> @dept
+                </button>
+            </form>
+        </div>
+    }
+</div>
+
+
+<div class="text-center mt-4">
+    <a asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+</div>

@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Employee Dashboard";
+}
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-calendar-check" style="font-size: 2rem; color: #2E7D32;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.LeaveBalance</h3>
+                <p class="text-muted mb-0">Remaining Leaves</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-hourglass-split" style="font-size: 2rem; color: #F5A623;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.PendingLeaves</h3>
+                <p class="text-muted mb-0">Pending</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-check-circle-fill" style="font-size: 2rem; color: #2E7D32;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.ApprovedLeaves</h3>
+                <p class="text-muted mb-0">Approved</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center">
+                <i class="bi bi-x-circle-fill" style="font-size: 2rem; color: #C0392B;"></i>
+                <h3 class="mt-2 mb-0">@ViewBag.RejectedLeaves</h3>
+                <p class="text-muted mb-0">Rejected</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Leave Requests -->
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 pt-3">
+        <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Your Recent Leave Requests</h5>
+    </div>
+    <div class="card-body">
+        @if (ViewBag.RecentLeaves != null && ViewBag.RecentLeaves.Count > 0)
+        {
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Date Range</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var leave in ViewBag.RecentLeaves)
+                    {
+                        <tr>
+                            <td>@leave.StartDate.ToShortDateString() - @leave.EndDate.ToShortDateString()</td>
+                            <td>@leave.Reason</td>
+                            <td>
+                                @if (leave.Status == LeaveStatus.Approved)
+                                {
+                                    <span class="badge-active">Approved</span>
+                                }
+                                else if (leave.Status == LeaveStatus.Pending)
+                                {
+                                    <span class="badge-pending">Pending</span>
+                                }
+                                else
+                                {
+                                    <span class="badge-terminated">Rejected</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted text-center mb-0">No leave requests found.</p>
+        }
+    </div>
+</div>

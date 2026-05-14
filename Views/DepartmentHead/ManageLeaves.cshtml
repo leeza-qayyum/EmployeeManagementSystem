@@ -1,0 +1,39 @@
+﻿@model List<EmployeeManagementSystem.Models.LeaveRequest>
+@{
+    ViewData["Title"] = "Pending Leaves";
+}
+<h2 class="text-white">Pending Leave Requests</h2>
+@if (!Model.Any())
+{
+    <p >No pending leave requests.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr><th>Employee</th><th>Dates</th><th>Reason</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var leave in Model)
+            {
+                var emp = ((List<EmployeeManagementSystem.Models.Employee>)ViewBag.Employees)?.FirstOrDefault(e => e.Id == leave.EmployeeId);
+                <tr>
+                    <td>@(emp?.Name ?? "Unknown")</td>
+                    <td>@leave.StartDate.ToShortDateString() - @leave.EndDate.ToShortDateString()</td>
+                    <td>@leave.Reason</td>
+                    <td>
+                        <form method="post" asp-action="ApproveLeave" style="display:inline">
+                            <input type="hidden" name="leaveId" value="@leave.Id" />
+                            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                        </form>
+                        <form method="post" asp-action="RejectLeave" style="display:inline">
+                            <input type="hidden" name="leaveId" value="@leave.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a asp-action="Dashboard" class="btn btn-secondary">Back</a>

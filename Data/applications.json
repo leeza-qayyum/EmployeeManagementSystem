@@ -1,0 +1,15 @@
+[
+  {
+    "Id": 1,
+    "JobPostingId": 2,
+    "CandidateName": "Iman ",
+    "Email": "imanismail055@gmail.com",
+    "Phone": "03281488670",
+    "CVFilePath": "/cv_uploads/639140325845433341_Resume - Software Engineering Student.pdf",
+    "ExtractedSkills": "c\u002B\u002B python java",
+    "MatchScore": 100,
+    "IsShortlisted": true,
+    "AppliedDate": "2026-05-10T17:56:24.5672497+05:00",
+    "Status": "Shortlisted"
+  }
+]

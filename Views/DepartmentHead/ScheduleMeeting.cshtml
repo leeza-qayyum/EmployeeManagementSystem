@@ -1,0 +1,74 @@
+﻿@model EmployeeManagementSystem.Models.Meeting
+@{
+    ViewData["Title"] = "Schedule Meeting";
+}
+
+<h2>Schedule Department Meeting</h2>
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Meeting Title</label>
+                        <input asp-for="Title" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label>Date</label>
+                                <input asp-for="MeetingDate" type="date" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label>Start Time</label>
+                                <input asp-for="StartTime" type="time" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label>End Time</label>
+                                <input asp-for="EndTime" type="time" class="form-control" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Location</label>
+                        <input asp-for="Location" class="form-control" placeholder="Conference Room A, Meeting Hall, or Virtual" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Virtual Meeting Link (Optional)</label>
+                        <input asp-for="MeetingLink" class="form-control" placeholder="https://meet.google.com/..." />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Schedule Meeting</button>
+                    <a asp-action="Meetings" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-light">
+                <div class="card-body">
+                    <h5><i class="bi bi-info-circle"></i> Information</h5>
+                    <p>All employees in your department will:</p>
+                    <ul>
+                        <li>Receive email notification</li>
+                        <li>See meeting in their dashboard</li>
+                        <li>Get updates if rescheduled</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
