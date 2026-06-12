@@ -102,7 +102,8 @@ EmployeeManagementSystem/
 4. **Run** the application (F5)
 
 ### Contributors
-Leeza Qayyum 
-Iman Fatima 
+Leeza Qayyum, 
+Iman Fatima, 
+Muneeb UR Rehman
 
 }
