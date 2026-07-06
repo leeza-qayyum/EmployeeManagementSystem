@@ -43,51 +43,6 @@ A complete desktop-based Employee Management System built with **C# Windows Form
 | **Authentication** | SHA256 password hashing |
 | **Email** | SMTP (Gmail App Password) |
 
----
-
-## 📁 Project Structure
-EmployeeManagementSystem/
-├── Account/
-│ ├── LoginForm.cs
-│ └── ChangePasswordForm.cs
-├── HR/
-│ ├── HRDashboardForm.cs
-│ ├── ManageEmployeesForm.cs
-│ ├── AddEmployeeForm.cs
-│ ├── EditEmployeeForm.cs
-│ ├── AppointHeadForm.cs
-│ ├── CreateJobPostingForm.cs
-│ ├── ManageJobPostingsForm.cs
-│ ├── ShortlistedCandidatesForm.cs
-│ ├── ViewApplicationsForm.cs
-│ └── ViewProfileForm.cs
-├── Employee/
-│ ├── EmployeeDashboardForm.cs
-│ ├── ApplyLeaveForm.cs
-│ ├── LeaveHistoryForm.cs
-│ ├── MyAttendanceForm.cs
-│ ├── MeetingsForm.cs
-│ └── ViewProfileForm.cs
-├── DepartmentHead/
-│ ├── DeptHeadDashboardForm.cs
-│ ├── ViewEmployeesForm.cs
-│ ├── ManageLeavesForm.cs
-│ ├── MonthlyAttendanceForm.cs
-│ ├── ManageMeetingsForm.cs
-│ ├── ScheduleMeetingForm.cs
-│ └── ViewProfileForm.cs
-├── Common/
-│ └── Models/
-│ ├── Employee.cs
-│ ├── LeaveRequest.cs
-│ ├── Attendance.cs
-│ ├── Meeting.cs
-│ └── User.cs
-├── Program.cs
-└── EmployeeManagementSystem.csproj
-
----
-
 ## 🖥️ How to Run the Project
 
 ### Prerequisites
@@ -100,10 +55,3 @@ EmployeeManagementSystem/
 2. **Open** `EmployeeManagementSystem.sln` or `EmployeeManagementSystem.csproj` in Visual Studio
 3. **Build** the solution (Ctrl + Shift + B)
 4. **Run** the application (F5)
-
-### Contributors
-Leeza Qayyum, 
-Iman Fatima, 
-Muneeb UR Rehman
-
-}
